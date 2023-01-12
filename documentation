@@ -1,0 +1,10 @@
+installing box "debian/bullseye64"
+with specific version "11.20221219.1"
+forwarding ip, guest port 80 to host port 8080
+updating the machine
+installing latest python version
+installing latest pip version
+installing latest neovim version
+installing latest apache2 version
+default nfs not working, workaround using nfs version 4 instead
+sharing/syncing folder "/webcontent/" into "/var/www/html/"
