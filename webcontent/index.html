@@ -1,6 +1,52 @@
 <html>
-    <head>My vagrant web server</head>
-    <body>
-        <h1>HELLO WORLD!</h1>
-    </body>
+  <!--Create an HTML file with a rotating gold metal torus with lots of light in three js-->
+  <head>
+    <title>Rotating Gold Metal Torus</title>
+    <style>
+      body { margin: 0; }
+      canvas { width: 100%; height: 100%; }
+    </style>
+  </head>
+  <body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r119/three.min.js"></script>
+    <script>
+      // Set up the scene, camera, and renderer
+      let scene = new THREE.Scene();
+      let camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 1000);
+      let renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      // Create the gold metal material
+      let goldMaterial = new THREE.MeshStandardMaterial({
+        color: 0xffd700, // gold color
+        metalness: 0.9, // high metalness for a metallic look
+        roughness: 0.1 // low roughness for a smooth surface
+      });
+
+      // Create the torus geometry
+      let torusGeometry = new THREE.TorusGeometry(1, 0.4, 16, 100);
+
+      // Create the torus mesh
+      let torus = new THREE.Mesh(torusGeometry, goldMaterial);
+      scene.add(torus);
+
+      // Create a point light and add it to the scene
+      let pointLight = new THREE.PointLight(0xffffff, 1, 100);
+      pointLight.position.set(60, 50, 0);
+      scene.add(pointLight);
+
+      // Set the camera position
+      camera.position.z = 5;
+
+      // Animate the scene
+      function animate() {
+        requestAnimationFrame(animate);
+        torus.rotation.x += 0.01;
+        torus.rotation.y += 0.01;
+        renderer.render(scene, camera);
+      }
+      animate();
+    </script>
+  </body>
 </html>
